@@ -1,14 +1,15 @@
 package pp241007
 
 import (
+	"log"
+	"math"
+	"time"
+
 	"github.com/wieku/danser-go/app/beatmap/difficulty"
 	"github.com/wieku/danser-go/app/beatmap/objects"
 	"github.com/wieku/danser-go/app/rulesets/osu/performance/api"
 	"github.com/wieku/danser-go/app/rulesets/osu/performance/pp241007/preprocessing"
 	"github.com/wieku/danser-go/app/rulesets/osu/performance/pp241007/skills"
-	"log"
-	"math"
-	"time"
 )
 
 const (
@@ -38,12 +39,6 @@ func (diffCalc *DifficultyCalculator) getStarsFromRawValues(rawAim, rawAimNoSlid
 	if diff.CheckModActive(difficulty.TouchDevice) {
 		aimRating = math.Pow(aimRating, 0.8)
 		flashlightRating = math.Pow(flashlightRating, 0.8)
-	}
-
-	if diff.CheckModActive(difficulty.Relax) {
-		aimRating *= 0.9
-		speedRating = 0
-		flashlightRating *= 0.7
 	}
 
 	var total float64

@@ -1,14 +1,15 @@
 package skills
 
 import (
+	"math"
+
 	"github.com/wieku/danser-go/app/beatmap/difficulty"
 	"github.com/wieku/danser-go/app/rulesets/osu/performance/pp241007/evaluators"
 	"github.com/wieku/danser-go/app/rulesets/osu/performance/pp241007/preprocessing"
-	"math"
 )
 
 const (
-	speedSkillMultiplier float64 = 1.430
+	speedSkillMultiplier float64 = 1400
 	speedStrainDecayBase float64 = 0.3
 )
 
