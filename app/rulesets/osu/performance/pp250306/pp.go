@@ -82,7 +82,7 @@ func (pp *PPv2) Calculate(attribs api.Attributes, score api.PerfScore, diff *dif
 	pp.mehHitWindow = diff.Hit50U / diff.GetSpeed()
 
 	if pp.attribs.Sliders > 0 {
-		if pp.usingClassicSliderAccuracy {
+		if pp.usingClassicSliderAccuracy || diff.Mods.Active(difficulty.Relax) {
 			// Consider that full combo is maximum combo minus dropped slider tails since they don't contribute to combo but also don't break it
 			// In classic scores we can't know the amount of dropped sliders so we estimate to 10% of all sliders on the map
 			fullComboThreshold := float64(pp.attribs.MaxCombo) - 0.1*float64(pp.attribs.Sliders)
@@ -125,7 +125,7 @@ func (pp *PPv2) Calculate(attribs api.Attributes, score api.PerfScore, diff *dif
 		multiplier *= 1.0 - math.Pow(float64(attribs.Spinners)/float64(pp.totalHits), 0.85)
 	}
 
-	if diff.Mods.Active(difficulty.Relax) {
+	/*if diff.Mods.Active(difficulty.Relax) {
 		okMultiplier := 1.0
 		mehMultiplier := 1.0
 
@@ -135,7 +135,7 @@ func (pp *PPv2) Calculate(attribs api.Attributes, score api.PerfScore, diff *dif
 		}
 
 		pp.effectiveMissCount = min(pp.effectiveMissCount+float64(pp.score.CountOk)*okMultiplier+float64(pp.score.CountMeh)*mehMultiplier, float64(pp.totalHits))
-	}
+	}*/
 
 	pp.speedDeviation = pp.calculateSpeedDeviation(pp.attribs)
 
@@ -157,9 +157,9 @@ func (pp *PPv2) Calculate(attribs api.Attributes, score api.PerfScore, diff *dif
 }
 
 func (pp *PPv2) computeAimValue() float64 {
-	if pp.diff.CheckModActive(difficulty.Relax2) {
+	/*if pp.diff.CheckModActive(difficulty.Relax2) {
 		return 0
-	}
+	}*/
 
 	aimDifficulty := pp.attribs.Aim
 
@@ -204,9 +204,9 @@ func (pp *PPv2) computeAimValue() float64 {
 		approachRateFactor = 0.05 * (8.0 - pp.diff.ARReal)
 	}
 
-	if pp.diff.CheckModActive(difficulty.Relax) {
+	/*if pp.diff.CheckModActive(difficulty.Relax) {
 		approachRateFactor = 0.0
-	}
+	}*/
 
 	aimValue *= 1.0 + approachRateFactor*lengthBonus // Buff for longer maps with high AR.
 
@@ -223,9 +223,9 @@ func (pp *PPv2) computeAimValue() float64 {
 }
 
 func (pp *PPv2) computeSpeedValue() float64 {
-	if pp.diff.CheckModActive(difficulty.Relax) {
+	/*if pp.diff.CheckModActive(difficulty.Relax) {
 		return 0
-	}
+	}*/
 
 	speedValue := skills.DefaultDifficultyToPerformance(pp.attribs.Speed)
 
@@ -247,9 +247,9 @@ func (pp *PPv2) computeSpeedValue() float64 {
 		approachRateFactor = 0.3 * (pp.diff.ARReal - 10.33)
 	}
 
-	if pp.diff.CheckModActive(difficulty.Relax2) {
+	/*if pp.diff.CheckModActive(difficulty.Relax2) {
 		approachRateFactor = 0
-	}
+	}*/
 
 	speedValue *= 1.0 + approachRateFactor*lengthBonus
 
@@ -276,9 +276,9 @@ func (pp *PPv2) computeSpeedValue() float64 {
 }
 
 func (pp *PPv2) computeAccuracyValue() float64 {
-	if pp.diff.Mods.Active(difficulty.Relax) {
+	/*if pp.diff.Mods.Active(difficulty.Relax) {
 		return 0.0
-	}
+	}*/
 
 	// This percentage only considers HitCircles of any value - in this part of the calculation we focus on hitting the timing hit window
 	betterAccuracyPercentage := 0.0
