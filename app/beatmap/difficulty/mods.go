@@ -188,14 +188,6 @@ func (mods Modifier) GetScoreMultiplier() float64 {
 		multiplier *= 1.12
 	}
 
-	if (mods&Relax | mods&Relax2) > 0 {
-		if mods&Lazer > 0 {
-			multiplier *= 0.1
-		} else {
-			multiplier = 0
-		}
-	}
-
 	if mods&SpunOut > 0 {
 		multiplier *= 0.9
 	}
