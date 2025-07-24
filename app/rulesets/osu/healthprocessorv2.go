@@ -128,6 +128,11 @@ func (hp *HealthProcessorV2) CalculateRate() { //nolint:gocyclo
 	adjustment := 1
 	hp.passiveDrain = 1.0
 
+	if len(healthIncreases) <= 1 {
+		hp.passiveDrain = 0
+		return
+	}
+
 	// Although we expect the following loop to converge within 30 iterations (health within 1/2^31 accuracy of the target),
 	// we'll still keep a safety measure to avoid infinite loops by detecting overflows.
 	for {

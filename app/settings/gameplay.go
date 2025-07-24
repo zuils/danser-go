@@ -42,6 +42,7 @@ func initGameplay() *gameplay {
 			StaticUnstableRate:   false,
 			CapPositionalMisses:  true,
 			AngleNormalized:      false,
+			UseFallbackSkin:      false,
 		},
 		Score: &score{
 			hudElementOffset: &hudElementOffset{
@@ -331,6 +332,7 @@ type aimError struct {
 	StaticUnstableRate   bool
 	CapPositionalMisses  bool
 	AngleNormalized      bool
+	UseFallbackSkin      bool `tooltip:"Useful for \"instafade\" skins" liveedit:"false"`
 }
 
 type score struct {

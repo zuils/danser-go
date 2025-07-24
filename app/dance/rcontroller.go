@@ -313,6 +313,8 @@ func loadFrames(subController *subControl, frames []*rplpa.ReplayData) {
 
 	meanFrameTime = subController.diff.GetModifiedTime(meanFrameTime)
 
+	log.Println("\tFrame count:", len(times))
+
 	log.Println(fmt.Sprintf("\tMedian cv frametime: %.2fms", meanFrameTime))
 
 	if meanFrameTime <= 13 && !subController.diff.CheckModActive(difficulty.Autoplay|difficulty.Relax|difficulty.Relax2) {

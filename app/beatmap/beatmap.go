@@ -154,6 +154,10 @@ func (beatMap *BeatMap) ParsePoint(point string) {
 	pointTime, _ := strconv.ParseFloat(line[0], 64)
 	bpm, _ := strconv.ParseFloat(line[1], 64)
 
+	if bpm > math.MaxInt32 { // ignore absurd timing points
+		return
+	}
+
 	if !math.IsNaN(bpm) && bpm >= 0 {
 		rBPM := 60000 / bpm
 		beatMap.MinBPM = min(beatMap.MinBPM, rBPM)
