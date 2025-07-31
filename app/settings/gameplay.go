@@ -241,7 +241,7 @@ func initGameplay() *gameplay {
 		FlashlightDim:           1,
 		PlayUsername:            "Guest",
 		IgnoreFailsInReplays:    false,
-		PPVersion:               "latest",
+		PPVersion:               "220930",
 		LazerClassicScore:       false,
 	}
 }

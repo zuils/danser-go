@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	NormalizedRadius        = 50.0
+	NormalizedRadius        = 52.0
 	CircleSizeBuffThreshold = 30.0
 	MinDeltaTime            = 25
 )
